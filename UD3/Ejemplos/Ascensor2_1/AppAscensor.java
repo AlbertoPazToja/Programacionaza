@@ -11,8 +11,11 @@ public class AppAscensor {
         a.situacion();
         a.bajar(1);
         a.situacion();
-        a.subir(100);
+        a.subir(10);
         a.situacion();
+
     }
 
 }
+
+// Me queda por poner el límite al subir y al bajar, hay un problema (do-while)

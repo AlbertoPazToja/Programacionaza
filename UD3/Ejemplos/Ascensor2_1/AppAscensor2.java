@@ -17,8 +17,8 @@ public class AppAscensor2 {
         int limite = sc.nextInt(); // Creamos una variable para definir el límite de pisos
 
         if (actual > limite || actual < 0) {
-            System.out.println("El piso introducido no es válido, vuelve a intentarlo");
-            // En el caso que
+            System.err.print("El piso introducido no es válido, vuelve a intentarlo");
+            // En el caso que el piso actual sea mayor que el límite o menor que 0, da error
         }
 
         else {
@@ -68,3 +68,5 @@ public class AppAscensor2 {
     }
 
 }
+
+// Me queda por poner el límite al subir y al bajar, hay un problema (do-while)
