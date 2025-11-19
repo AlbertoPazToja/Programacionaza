@@ -36,15 +36,11 @@ public class Ascensor { // Creamos la clase Ascensor
     public void subir(int pisos) {
         int contador = 0;
 
-        do {
-
+        while (limite > piso && contador < pisos) {
             this.piso = this.piso + 1;
             System.out.println("Has subido al piso " + this.piso);
             contador++;
-
         }
-
-        while (limite > piso && contador < pisos);
 
     }
 
@@ -57,15 +53,12 @@ public class Ascensor { // Creamos la clase Ascensor
     public void bajar(int pisos) {
         int contador = 0;
 
-        do {
+        while (piso > 0 && contador < pisos) {
 
             this.piso = this.piso - 1;
             System.out.println("Has bajado al piso " + this.piso);
             contador++;
-
         }
-
-        while (piso > 0 && contador < pisos);
 
     }
 

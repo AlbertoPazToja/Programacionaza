@@ -11,8 +11,9 @@ public class AppAscensor {
         a.situacion();
         a.bajar(1);
         a.situacion();
-        a.subir(10);
+        a.subir(1);
         a.situacion();
+        a.bajar(1);
 
     }
 
