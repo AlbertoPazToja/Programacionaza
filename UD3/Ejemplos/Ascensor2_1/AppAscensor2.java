@@ -16,7 +16,7 @@ public class AppAscensor2 {
         System.out.println("Introduce el límite de pisos");
         int limite = sc.nextInt(); // Creamos una variable para definir el límite de pisos
 
-        if (actual > limite || actual < 0) {
+        if (actual > limite || actual < 0 || limite == 0) {
             System.err.print("El piso introducido no es válido, vuelve a intentarlo");
             // En el caso que el piso actual sea mayor que el límite o menor que 0, da error
         }
