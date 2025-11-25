@@ -77,6 +77,9 @@ public class Conta {
 
     }
 
+    // Hacemos los setters y getters de los atributos de la clase, ya que están en
+    // privado
+
     public boolean movemento(boolean tipo, double valor, String concepto) {
 
         boolean debe = true;
@@ -115,12 +118,18 @@ public class Conta {
 
     }
 
+    // Creamos el método movemento, que tiene 3 atributos propios y devuelve un
+    // boolean
+
     public void mostrarInformacion() {
 
-        System.out.println(idConta);
-        System.out.println(titular);
-        System.out.println(saldo);
-        System.out.println(conceptoUltimoMovimiento);
+        System.out.println(getIdConta());
+        System.out.println(getTitular());
+        System.out.println(getSaldo());
+        System.out.println(getConceptoUltimoMovimiento());
     }
+
+    // Creamos otro método que sirve para mostrarmlos atributos por pantalla (mejor
+    // con get)
 
 }
