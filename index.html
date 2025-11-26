@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEMUESTRA si eres un verdadero fan de Paraninfo</title>
+    <!-- Carga de Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Configuración de fuente y tema oscuro eléctrico */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+            /* Fondo azul oscuro eléctrico */
+            /* Efecto de puntos de fondo para más ruido visual */
+            background-image: radial-gradient(#1e3a8a 1px, transparent 1px);
+            background-size: 30px 30px;
+            /* Flexbox para centrar y apilar el título y el quiz */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 1rem;
+        }
+
+        /* Animación de Borde Neón Constante (El Brainrot Visual) */
+        @keyframes neon-glow {
+
+            0%,
+            100% {
+                box-shadow: 0 0 10px #0ea5e9, 0 0 20px #0ea5e9;
+                border: 3px solid #0ea5e9;
+            }
+
+            /* Cyan */
+            50% {
+                box-shadow: 0 0 15px #f43f5e, 0 0 25px #f43f5e;
+                border: 3px solid #f43f5e;
+            }
+
+            /* Rosa Vibrante */
+        }
+
+        /* Título Épico y Gigante */
+        .paraninfo-title {
+            font-size: 3.75rem;
+            /* text-6xl */
+            line-height: 1;
+            color: #facc15;
+            /* Amarillo brillante */
+            text-shadow: 0 0 5px #facc15, 0 0 15px #facc15, 0 0 25px #ef4444;
+            transition: all 0.2s;
+            /* Asegurar que el título siempre esté encima */
+            z-index: 10;
+        }
+
+        /* Para hacerlo aún más épico en móvil y desktop */
+        @media (min-width: 640px) {
+            .paraninfo-title {
+                font-size: 7rem;
+                /* ¡Aún más grande! */
+            }
+        }
+
+        /* Aplicar la animación constante al contenedor principal */
+        #quiz-container {
+            animation: neon-glow 3s infinite alternate;
+        }
+
+        /* Animación para feedback de respuesta correcta (más épica) */
+        @keyframes correct-pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 10px #10b981, 0 0 30px #047857;
+            }
+
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 0 25px #10b981, 0 0 50px #047857;
+            }
+
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 10px #10b981, 0 0 30px #047857;
+            }
+        }
+
+        /* Animación para feedback de respuesta incorrecta (el "tun tun sahur" shake más violento) */
+        @keyframes incorrect-shake {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            10%,
+            30%,
+            50%,
+            70%,
+            90% {
+                transform: translateX(-8px) rotate(-1deg);
+            }
+
+            20%,
+            40%,
+            60%,
+            80% {
+                transform: translateX(8px) rotate(1deg);
+            }
+        }
+
+        .correct-answer {
+            animation: correct-pulse 0.4s ease-in-out;
+            background-color: #0d9488 !important;
+            /* Verde cian intenso */
+            border-color: #14b8a6 !important;
+            color: #ecfdf5;
+        }
+
+        .incorrect-answer {
+            animation: incorrect-shake 0.2s ease-in-out;
+            background-color: #be123c !important;
+            /* Rojo vibrante */
+            border-color: #fb7185 !important;
+            color: #fee2e2;
+        }
+
+        /* Estilo para las opciones del quiz */
+        .option-button {
+            transition: all 0.1s ease-in-out;
+            cursor: pointer;
+        }
+
+        .option-button:hover:not(.disabled) {
+            transform: scale(1.01) translateY(-1px);
+            /* Efecto de pulsar */
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+        }
+
+        /* Animación de entrada para preguntas */
+        .question-fade-in {
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Encabezado Épico y GIGANTE (FUERA DEL CONTENEDOR) -->
+    <header class="mb-8 text-center">
+        <h1 class="paraninfo-title font-black mb-2">PARANINFO</h1>
+        <h2 class="text-xl sm:text-2xl font-bold text-cyan-400 mb-2">DEMUESTRA si eres un verdadero fan de Paraninfo
+        </h2>
+        <p class="text-gray-300">¡Solo los expertos en formación técnica superarán esta prueba "brainrot"!</p>
+    </header>
+
+    <div id="quiz-container" class="w-full max-w-xl bg-slate-800 p-8 rounded-xl shadow-2xl transition-all duration-300">
+
+        <!-- Área del Quiz -->
+        <div id="question-area">
+            <!-- Contenido de pregunta y opciones se inyecta aquí -->
+        </div>
+
+        <!-- Área de Puntuación (Oculta al inicio) -->
+        <div id="score-area" class="text-center p-8 hidden">
+            <h2 class="text-4xl font-extrabold text-fuchsia-400 mb-4">¡VICTORIA ÉPICA!</h2>
+            <p class="text-xl text-white mb-6">Tu puntuación final es un <span
+                    class="text-amber-400 font-bold">LEGADO</span> de:</p>
+            <div id="final-score" class="text-7xl font-black text-lime-400 mb-8 transform scale-110"></div>
+            <button id="restart-button"
+                class="bg-lime-500 hover:bg-lime-600 text-slate-900 font-black py-4 px-10 rounded-full shadow-2xl transition duration-300 transform hover:scale-110">
+                ¡REINICIAR LA ÉPICA!
+            </button>
+        </div>
+
+    </div>
+
+    <script>
+        // Datos del Quiz actualizados para la Editorial Paraninfo
+        const quizQuestions = [
+            {
+                question: "¡ALERTA SKIBIDI! ¿Cuál es el área donde Paraninfo es el indiscutible BOSS FINAL?",
+                options: [
+                    { text: "Telenovelas históricas sobre el Virreinato", isCorrect: false, rationale: "ERROR: Esa es una misión de bajo nivel. Paraninfo solo se enfoca en el conocimiento DIFICIL." },
+                    { text: "Fichas de coleccionista de cromos de fútbol", isCorrect: false, rationale: "FALLO ÉPICO: No es su meta. Su meta es ser el 'cheat code' de la formación." },
+                    { text: "Formación Profesional, técnica y Grados de Ingeniería (La FUERZA DURA)", isCorrect: true, rationale: "¡CORRECTO! 👑 Paraninfo es el BOSS FINAL de la Formación Profesional. Sus libros son el 'cheat code' para ser un 'pro' en cualquier FP o Ingeniería. ¡SKIBIDI TÉCNICO!" },
+                    { text: "Guías de aves migratorias de la Siberia", isCorrect: false, rationale: "ZASCA: Demasiado nicho, demasiado *chill*. Paraninfo es *hardcore*." }
+                ]
+            },
+            {
+                question: "Si ves un título como 'Manual Práctico del Operador de Calderas Industriales', ¿qué nivel de 'Brainrot' de Paraninfo has alcanzado?",
+                options: [
+                    { text: "Nivel 1: Turista de la librería", isCorrect: false, rationale: "NAH: Esto es conocimiento de nivel SUPERIOR. ¡Te falta calle (técnica)!" },
+                    { text: "Nivel 99: ¡EL TÍTULO LEGENDARIO! Es la 'Biblia' de los oficios épicos.", isCorrect: true, rationale: "¡EL TÍTULO LEGENDARIO! ✅ Un verdadero fan de Paraninfo sabe que solo ellos publican la 'Biblia' para dominar oficios épicos. Este es el camino del *Operador God*." },
+                    { text: "Nivel 50: Solo vi la portada roja", isCorrect: false, rationale: "NO LORE: No se trata de colores. ¡Se trata de la utilidad técnica BRUTAL!" },
+                    { text: "Nivel 0: Pensé que era un libro de recetas", isCorrect: false, rationale: "¡CRINGE! Los libros de Paraninfo no son para *gourmet*. Son para *techies*." }
+                ]
+            },
+            {
+                question: "¿Cuál es el 'Terreno de Juego' (The Meta) donde se usan los manuales de Paraninfo?",
+                options: [
+                    { text: "Juegos de rol en sótanos oscuros", isCorrect: false, rationale: "NOPE: El *lore* de Paraninfo es en la luz de las aulas y talleres. ¡No hay *dungeons*!" },
+                    { text: "Concursos de trivial sobre cultura pop", isCorrect: false, rationale: "ABURRIDO: Paraninfo es demasiado serio para el *pop*. Es puro *tekno-power*." },
+                    { text: "Ciclos de Formación Profesional (FP) y Grados de Ingeniería (¡Los 'assets' oficiales!)", isCorrect: true, rationale: "¡EL TERRENO DE JUEGO! 🕹️ Los libros de Paraninfo son los 'assets' oficiales de los Grados de Ingeniería y la FP. ¡Son el *meta* del conocimiento duro y puro!" },
+                    { text: "Clubs de lectura de poesía melancólica", isCorrect: false, rationale: "DEMASIADO SUAVE: Necesitas *bytes*, no *baladas*." }
+                ]
+            },
+            {
+                question: "Si buscas 'Microsoft Word 2019' en el catálogo, ¿qué nombre 'Brainrot' usa Paraninfo para ese tema?",
+                options: [
+                    { text: "El Secreto del Procesador Oculto", isCorrect: false, rationale: "FANTASÍA: No uses títulos inventados. ¡Usa el vocabulario TÉCNICO!" },
+                    { text: "Aplicaciones informáticas (El Dominio del Software)", isCorrect: true, rationale: "¡EL DOMINIO DEL SOFTWARE! 💻 Paraninfo no solo tiene 'Aplicaciones Informáticas', tiene los 'scrolls' antiguos para dominar Access y Excel, convirtiéndote en un 'hacker' de la ofimática. ¡Muy 'Brainrot'!" },
+                    { text: "La Odisea del Texto", isCorrect: false, rationale: "PÉRDIDA DE TIEMPO: Los títulos de Paraninfo son directos, como un buen código. ¡Al grano!" },
+                    { text: "El Manual del Word-Fu", isCorrect: false, rationale: "¡QUÉ ES ESO! Paraninfo es formación, no artes marciales. ¡Focus!" }
+                ]
+            },
+            {
+                question: "El formato de los libros de Paraninfo está 'MAXIMIZADO' para...",
+                options: [
+                    { text: "Ser leídos en una bañera de hidromasaje", isCorrect: false, rationale: "CERO PRACTICIDAD: No son novelas de vacaciones. Son herramientas de trabajo." },
+                    { text: "Un manual técnico con ejemplos de código y *quests* (ejercicios prácticos)", isCorrect: true, rationale: "¡FORMATO MAXIMIZADO! 🔥 El 'lore' de Paraninfo es claro: el conocimiento técnico debe ser práctico, con ejemplos y *quests* (ejercicios) que te hagan subir de nivel. ¡Nada de audiolibros, solo *hardcore*!" },
+                    { text: "Servir como posavasos elegantes en conferencias", isCorrect: false, rationale: "¡SAHUR FALLIDO! Su función es la educación, no la decoración." },
+                    { text: "Ser adaptado a una serie de Netflix", isCorrect: false, rationale: "IMPOSIBLE: Es demasiado técnico para la TV. ¡Solo apto para la mente *pro*!" }
+                ]
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let isAnswered = false; // Bandera para evitar doble clic
+
+        const questionArea = document.getElementById('question-area');
+        const scoreArea = document.getElementById('score-area');
+        const finalScore = document.getElementById('final-score');
+        const restartButton = document.getElementById('restart-button');
+
+        // Función para barajar las opciones
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        function displayQuestion() {
+            if (currentQuestionIndex >= quizQuestions.length) {
+                showResults();
+                return;
+            }
+
+            isAnswered = false;
+            const currentQuestionData = quizQuestions[currentQuestionIndex];
+            const options = [...currentQuestionData.options]; // Copiar opciones
+            shuffleArray(options); // Barajar opciones
+
+            // Generar el HTML para la pregunta actual
+            let questionHtml = `
+                <div id="current-question" class="question-fade-in text-white mb-6 p-4 rounded-xl bg-slate-700 shadow-2xl border-2 border-slate-600">
+                    <p class="text-sm text-cyan-400 mb-2 font-black">PREGUNTA ${currentQuestionIndex + 1} DE ${quizQuestions.length}</p>
+                    <h3 class="text-xl font-bold mb-5">${currentQuestionData.question}</h3>
+                    <div id="options-container" class="space-y-4">
+            `;
+
+            options.forEach((option, index) => {
+                questionHtml += `
+                    <button
+                        class="option-button w-full text-left py-4 px-6 bg-slate-600 border border-slate-600 rounded-lg shadow-xl text-gray-100 hover:bg-slate-500 disabled:opacity-75 font-semibold tracking-wider"
+                        data-index="${index}"
+                        data-is-correct="${option.isCorrect}"
+                        data-rationale="${option.rationale.replace(/"/g, '&quot;')}"
+                        onclick="checkAnswer(this)"
+                    >
+                        ${option.text}
+                    </button>
+                `;
+            });
+
+            questionHtml += `
+                    </div>
+                </div>
+                <div id="feedback-message" class="mt-4 p-4 hidden rounded-xl text-center font-black text-xl border-4 transform transition duration-300"></div>
+                <button id="next-button" class="mt-8 w-full bg-fuchsia-600 hover:bg-fuchsia-700 text-white font-black py-4 rounded-lg shadow-2xl transition duration-300 transform hover:scale-[1.02] tracking-widest" onclick="nextQuestion()" disabled>
+                    SIGUIENTE FASE ➡️
+                </button>
+            `;
+
+            questionArea.innerHTML = questionHtml;
+        }
+
+        function checkAnswer(selectedButton) {
+            if (isAnswered) return;
+            isAnswered = true;
+
+            const isCorrect = selectedButton.dataset.isCorrect === 'true';
+            const rationale = selectedButton.dataset.rationale;
+            const optionsContainer = document.getElementById('options-container');
+            const feedbackMessage = document.getElementById('feedback-message');
+            const nextButton = document.getElementById('next-button');
+
+            // Deshabilitar todos los botones de opción y añadir clase 'disabled' para evitar hover
+            Array.from(optionsContainer.children).forEach(button => {
+                button.disabled = true;
+                button.classList.add('disabled');
+            });
+
+            // Aplicar estilos de feedback
+            if (isCorrect) {
+                score++;
+                selectedButton.classList.add('correct-answer');
+                feedbackMessage.classList.add('bg-green-800', 'text-white', 'border-green-400');
+                feedbackMessage.innerHTML = `¡ACIERTO CRÍTICO! 🎉 <span class="block text-base font-normal mt-2">${rationale}</span>`;
+            } else {
+                selectedButton.classList.add('incorrect-answer');
+                feedbackMessage.classList.add('bg-red-800', 'text-white', 'border-red-400');
+                feedbackMessage.innerHTML = `¡FALLO ÉPICO! ❌ <span class="block text-base font-normal mt-2">${rationale}</span>`;
+
+                // Resaltar la respuesta correcta con animación
+                const correctOption = Array.from(optionsContainer.children).find(
+                    btn => btn.dataset.isCorrect === 'true'
+                );
+                if (correctOption) {
+                    // Esperar a que el shake se vea antes de resaltar la correcta
+                    setTimeout(() => {
+                        correctOption.classList.add('correct-answer');
+                        correctOption.classList.remove('bg-slate-600', 'hover:bg-slate-500'); // Quitar estilos base
+                    }, 250);
+                }
+            }
+
+            feedbackMessage.classList.remove('hidden');
+            nextButton.disabled = false;
+        }
+
+        function nextQuestion() {
+            // Animación de salida más dramática
+            const currentQuestion = document.getElementById('current-question');
+            currentQuestion.classList.remove('question-fade-in');
+            currentQuestion.classList.add('opacity-0', 'transition', 'duration-300', 'transform', 'scale-75', 'rotate-3');
+
+            // Esperar a que termine la animación antes de cargar la siguiente pregunta
+            setTimeout(() => {
+                currentQuestionIndex++;
+                displayQuestion();
+            }, 300);
+        }
+
+        function showResults() {
+            questionArea.classList.add('hidden');
+            scoreArea.classList.remove('hidden');
+            finalScore.textContent = `${score} / ${quizQuestions.length}`;
+        }
+
+        function restartQuiz() {
+            currentQuestionIndex = 0;
+            score = 0;
+            scoreArea.classList.add('hidden');
+            questionArea.classList.remove('hidden');
+            displayQuestion();
+        }
+
+        // Asignar el evento al botón de reinicio
+        restartButton.addEventListener('click', restartQuiz);
+
+        // Iniciar el quiz al cargar
+        window.onload = displayQuestion;
+
+    </script>
+</body>
+
+</html>
