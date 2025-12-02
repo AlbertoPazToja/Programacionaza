@@ -167,18 +167,25 @@ public class Color {
 
     public boolean filtro(double filtroR, double filtroG, double filtroB) {
 
-        if (filtroR < 0 && filtroR > 1 && filtroG < 0 && filtroB > 1 && filtroB < 0 && filtroB > 1) {
-
-            return false;
-        }
-
-        else {
+        if (filtroR >= 0 && filtroR <= 1 && filtroG >= 0 && filtroB <= 1 && filtroB >= 0 && filtroB <= 1) {
+            // && -> Tiene que ser mayor que 0 Y menor que 1
+            // || -> Tiene que ser mayor que 0 O menor que 1 (NO VALE porque conque no sea
+            // mayor de uno ya valen todos los números menores, hasta los negativos, da
+            // igual el mayor que 0, y viceversa)
 
             R = filtroR * R;
             G = filtroG * G;
             B = filtroB * B;
 
             return true;
+        }
+
+        else {
+
+            System.out.println("Los valores del filtro están incorrectos");
+
+            return false;
+
         }
     }
 
