@@ -26,9 +26,23 @@ public class Data {
 
     }
 
+    // Creamos un constructor vacío para ponerlo luego con setters y getters, otro
+    // para el enum de los meses y otro para ponerlo desde el propio objeto
+
     public void setDia(int dia) {
-        this.dia = dia;
+        if (dia >= 1 && dia <= 31) {
+
+            this.dia = dia;
+        }
+
+        else {
+
+            System.out.println("El dia introducido no es válido");
+        }
     }
+
+    // Si el dia asignado no está dentro de esos parámetros, directamente no se
+    // asigna
 
     public int getDia() {
         return dia;
@@ -49,5 +63,31 @@ public class Data {
     public int getAño() {
         return año;
     }
+
+    // Creamos setters y getters, ya que los atributos están privados
+
+    public boolean isSummer() {
+
+        if ((this.getDia() >= 21 && this.getMes() == listademeses.Junio) || this.getMes() == listademeses.Julio
+                || this.getMes() == listademeses.Agosto
+                || (this.getDia() <= 21 && this.getMes() == listademeses.Septiembre)) {
+
+            return true;
+        }
+
+        else {
+
+            return false;
+        }
+    }
+
+    // Es verano cuando se siguen esos parámetros
+
+    public String toString() {
+
+        return "Hoy es " + this.getDia() + " de " + this.getMes() + " del año " + this.getAño();
+    }
+
+    // Un método que imprime los atributos en una frase
 
 }
