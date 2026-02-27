@@ -2,12 +2,16 @@ import java.util.Scanner;
 
 public class SolucionArrayParesOrdenados {
 
-    public static void soloPares(int[] array, int[] array2) {
-        int indice = 0;
-        for (int j = 0; j < array.length; j++) {
-            if (array[j] % 2 == 0) {
-                array2[indice] = array[j];
-                indice++;
+    public static void soloPares(int[] arrayInicial, int[] arrayFinal) {
+        int auxiliar = 0; // Auxiliar para recorrer y rellenar el segundo array
+
+        // Recorremos el primer array
+        for (int j = 0; j < arrayInicial.length; j++) {
+            // Comprobamos si el número es par
+            if (arrayInicial[j] % 2 == 0) {
+                // Si es par, lo guardamos en el segundo array
+                arrayFinal[auxiliar] = arrayInicial[j];
+                auxiliar++; // Avanzamos la posición del segundo array
             }
         }
     }
@@ -16,18 +20,20 @@ public class SolucionArrayParesOrdenados {
 
         Scanner sc = new Scanner(System.in);
 
+        // Pedimos al usuario el tamaño del array
         System.out.print("¿Cuántos números quieres meter en el Array?: ");
         int tamañoArray = sc.nextInt();
 
+        // Creamos el array con el tamaño indicado
         int[] numeros = new int[tamañoArray];
 
-        // 1️⃣ Llenar el array
+        // Rellenamos el array con los números que introduce el usuario
         for (int i = 0; i < tamañoArray; i++) {
             System.out.print("Número en la posición " + i + ": ");
             numeros[i] = sc.nextInt();
         }
 
-        // 2️⃣ Contar pares
+        // Contamos cuántos números pares hay en el array
         int contador = 0;
         for (int i = 0; i < tamañoArray; i++) {
             if (numeros[i] % 2 == 0) {
@@ -35,18 +41,19 @@ public class SolucionArrayParesOrdenados {
             }
         }
 
-        // 3️⃣ Crear nuevo array con tamaño correcto
-        int[] arrayNuevo = new int[contador];
+        // Creamos un nuevo array con el tamaño exacto de números pares
+        int[] arrayDePares = new int[contador];
 
-        // 4️⃣ Copiar solo pares
-        soloPares(numeros, arrayNuevo);
+        // Llamamos al método para copiar solo los números pares
+        soloPares(numeros, arrayDePares);
 
-        // 5️⃣ Mostrar resultado
+        // Mostramos por pantalla los números pares
         System.out.println("Números pares:");
-        for (int i = 0; i < arrayNuevo.length; i++) {
-            System.out.println(arrayNuevo[i]);
+        for (int i = 0; i < arrayDePares.length; i++) {
+            System.out.println(arrayDePares[i]);
         }
 
+        // Cerramos el Scanner
         sc.close();
     }
 }
