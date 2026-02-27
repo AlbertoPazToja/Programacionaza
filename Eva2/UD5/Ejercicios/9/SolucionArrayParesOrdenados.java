@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class SolucionArrayParesOrdenados {
@@ -46,6 +47,9 @@ public class SolucionArrayParesOrdenados {
 
         // Llamamos al método para copiar solo los números pares
         soloPares(numeros, arrayDePares);
+
+        // Ordenamos
+        Arrays.sort(arrayDePares);
 
         // Mostramos por pantalla los números pares
         System.out.println("Números pares:");
