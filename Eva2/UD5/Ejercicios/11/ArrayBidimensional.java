@@ -27,6 +27,10 @@ public class ArrayBidimensional {
             }
         } while (numFilas < 1 || numFilas > 10);
 
+        // Pide el número de filas y columnas, los asigna a una variable a cada uno
+        // mediante un escaner, y los pide mientras los números introducidos no estén
+        // entre 1 y 10
+
         do {
 
             System.out.println("Introduce el número de columnas de tu array (1-10): ");
@@ -41,7 +45,7 @@ public class ArrayBidimensional {
         int[][] matriz = new int[numFilas][numColumnas];
 
         for (int i = 0; i < matriz.length; i++) {
-            System.out.print("Fila " + i + "\n\t");
+            System.out.print("\nFila " + i + ":\t");
 
             for (int j = 0; j < matriz[i].length; j++) {
                 // Así imprime números aleatorios del 0 al 8 (el nueve no cuenta), y le sumas
@@ -51,6 +55,8 @@ public class ArrayBidimensional {
                 System.out.print("numeros[" + i + "][" + j + "] = " + matriz[i][j] + "\t");
             }
         }
+
+        sc.close();
 
     }
 }
