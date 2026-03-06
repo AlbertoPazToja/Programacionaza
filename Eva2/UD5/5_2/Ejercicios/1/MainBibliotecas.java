@@ -81,3 +81,8 @@ public class MainBibliotecas {
 
     }
 }
+
+// Desenvolver un programa en java que permita xestionar una lista de enteiros
+// usando arraylist, deberá crear a lista de enteiros (non tipo primitivo osea
+// Integer), debe permitir engadir números, amosar por pantalla o contido da
+// lista e o seu tamaño e debe poder eliminar por posicion ou por valor
