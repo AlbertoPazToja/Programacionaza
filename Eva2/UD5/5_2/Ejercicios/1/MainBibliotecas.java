@@ -69,7 +69,7 @@ public class MainBibliotecas {
                     break;
                 case 3:
                     System.out.println("Introduce el ISBN del libro que quieres modificar");
-                    String ISBNpaModificar = sc.next();
+                    String ISBNpaModificar = sc.nextLine();
 
                     break;
 
