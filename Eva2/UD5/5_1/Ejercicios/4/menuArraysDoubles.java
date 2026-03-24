@@ -7,7 +7,7 @@ public class menuArraysDoubles {
 
         int opcion = 0;
 
-        double[] listaNumeros = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+        double[] listaNumeros = new double[12];
 
         // Creamos un array con 12 números
 
