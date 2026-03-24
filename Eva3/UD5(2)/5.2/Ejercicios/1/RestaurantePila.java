@@ -60,6 +60,7 @@ public class RestaurantePila {
             }
 
         } while (numeroMenu != 0); // El bucle se repite hasta que el usuario pulse 0
+        // Pechamos Scanner
         sc.close();
 
     }
