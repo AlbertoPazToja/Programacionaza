@@ -48,11 +48,20 @@ public class RestaurantePila {
 
                 case 3:
                     // Recorremos la pila desde el último hasta el primero
-                    for (int i = platos.size() - 1; i >= 0; i--) {
-                        // get(i) enseña el elemento en la posicion i
-                        System.out.println("\\ " + platos.get(i).getUID() + ": " + platos.get(i).getNombre() + " /");
+
+                    if (platos.size() == 0) {
+
+                        System.out.println("No hay ningún plato sucio");
                     }
-                    System.out.println("\\──────────────────/");
+
+                    else {
+                        for (int i = platos.size() - 1; i >= 0; i--) {
+                            // get(i) enseña el elemento en la posicion i
+                            System.out
+                                    .println("\\ " + platos.get(i).getUID() + ": " + platos.get(i).getNombre() + " /");
+                        }
+                        System.out.println("\\──────────────────/");
+                    }
                     break;
 
                 default:
