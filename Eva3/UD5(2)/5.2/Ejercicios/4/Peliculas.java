@@ -106,7 +106,7 @@ public class Peliculas {
 
         System.out.println("Todas las peliculas que les gustan a los 2: " + todasPeliculas + "\n");
 
-        // --- OPERACIONES DE DIFERENCIA (Manual) ---
+        // Diferencia (exclusivas de cada uno):
         HashSet<Peliculas> peliculasSolo1 = new HashSet<>();
         HashSet<Peliculas> peliculasSolo2 = new HashSet<>();
 
