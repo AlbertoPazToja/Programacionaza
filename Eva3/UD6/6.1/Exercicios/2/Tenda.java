@@ -26,7 +26,7 @@ public class Tenda {
 
         for (Producto productoActual : productosDeLaTienda) {
 
-            System.out.println(productoActual.toString());
+            System.out.println(productoActual);
         }
     }
 
@@ -37,8 +37,8 @@ public class Tenda {
         for (Producto productoActual : productosDeLaTienda) {
 
             System.out.println(productoActual.getCantidade() + " unidades de " + productoActual.getNome()
-                    + " con un valor cada uno de " + productoActual.getPrezo() + " es equivalente a un total de "
-                    + productoActual.getCantidade() * productoActual.getPrezo());
+                    + " con un valor cada uno de " + productoActual.getPrezo() + " euros es equivalente a un total de "
+                    + productoActual.getCantidade() * productoActual.getPrezo() + " euros.");
 
             sumaTotal = sumaTotal + (productoActual.getPrezo() * productoActual.getCantidade());
 

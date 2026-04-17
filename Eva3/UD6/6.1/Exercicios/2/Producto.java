@@ -37,7 +37,7 @@ public class Producto {
     @Override
     public String toString() {
 
-        return cantidade + " unidades de " + nome + ", con un precio de " + prezo + " euros";
+        return cantidade + " unidades de " + nome + ", con un precio de " + prezo + " euros.";
     }
 
 }
