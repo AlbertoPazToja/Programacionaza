@@ -1,6 +1,6 @@
 package ComparableEjemplo;
 
-public class Estudante implements Comparable {
+public class Estudante implements Comparable<Object> {
     private String nome;
     private int idade;
 
