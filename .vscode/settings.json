@@ -2,6 +2,7 @@
     "java.debug.settings.onBuildFailureProceed": true,
     "java.project.sourcePaths": [
         "Eva3/UD6/Exercicios/1",
+        "Eva3/UD6/6.1/Exercicios/3",
         "Eva3/UD6/6.1/Exercicios/2",
         "Eva3/UD6/6.1/Exemplos/HerdanzaExemplo",
         "Eva3/UD5(2)/5.2/Ejercicios/5",
@@ -9,6 +10,6 @@
         "Eva3/UD5(2)/5.2/Ejercicios/3",
         "Eva3/UD5(2)/5.2/Ejercicios/1",
         "Eva3/UD5(2)/5.2/Ejemplos",
-        "Eva3/UD6/6.1/Exercicios/3"
+        "Eva3/UD6/6.3/Exemplos/FlujoBytesEjemplo"
     ]
 }
