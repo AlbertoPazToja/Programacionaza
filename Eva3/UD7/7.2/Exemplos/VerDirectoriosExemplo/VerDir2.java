@@ -8,9 +8,8 @@ public class VerDir2 {
         System.out.printf("Ficheros en el directorio actual: %d %n",
                 archivos.length);
         for (int i = 0; i < archivos.length; i++) {
-            File f2 = new File(f, archivos[i]); // Créase un File por cada ficheiro ou directorio interior
-            System.out.printf("Nombre: %s, es fichero?: %b, es directorio?: %b %n", archivos[i], f2.isFile(),
-                    f2.isDirectory());
+            System.out.printf("Nombre: %s, es fichero?: %b, es directorio?: %b %n", archivos[i], archivos[i].isFile(),
+                    archivos[i].isDirectory());
         }
     }
 }
