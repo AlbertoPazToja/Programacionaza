@@ -6,14 +6,13 @@ public class MenuXestionFicherosYDirectorios {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("Selecciona el directorio que quieres utilizar");
-        String directorio = sc.nextLine();
-
-        File d = new File(directorio);
-
         int opcion = 99;
 
         while (opcion != 0) {
+
+            System.out.println("Selecciona el directorio que quieres utilizar");
+            String directorio = sc.nextLine();
+            File d = new File(directorio);
 
             System.out.println("\n");
             System.out.println("1- Listar contido");
@@ -85,7 +84,7 @@ public class MenuXestionFicherosYDirectorios {
                         System.out.println("Seguro? Si estás seguro pon SI");
                         String confirmar = sc.nextLine();
 
-                        if (confirmar.toLowerCase() == "SI") {
+                        if (confirmar.equalsIgnoreCase("si")) {
                             directorioABorrar.delete();
                             System.out.println("Directorio borrado");
                         }
@@ -101,18 +100,28 @@ public class MenuXestionFicherosYDirectorios {
                     String nombreDirectorioARenomear = sc.nextLine();
                     File directorioARenomear = new File(nombreDirectorioARenomear);
                     if (directorioARenomear.exists()) {
-                        System.out.println();
-                        directorioARenomear.renameTo(d)
+                        System.out.println("Introduce el nombre nuevo: ");
+                        String nombreNuevo = sc.nextLine();
+                        File nombreNuevillo = new File(nombreNuevo);
+                        directorioARenomear.renameTo(nombreNuevillo);
+                    }
 
+                    else {
+
+                        System.out.println("No existe un directorio con ese nombre. Vuelve a intentarlo.");
                     }
 
                     break;
 
                 case 5:
 
+                    // No hace nada, vuelve a empezar y pide el directorio
+
                     break;
 
                 case 0:
+
+                    opcion = 0;
 
                     break;
 
@@ -121,5 +130,9 @@ public class MenuXestionFicherosYDirectorios {
             }
 
         }
+
+        System.out.println("Saliendo del programa...🚭🚭🚭");
+
+        sc.close();
     }
 }
