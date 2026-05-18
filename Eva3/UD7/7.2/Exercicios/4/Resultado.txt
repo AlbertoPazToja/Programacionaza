@@ -1,0 +1,1 @@
+El número de lineas del archivo Fichero.txt es: 3 y el número de caracteres: 53
