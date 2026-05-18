@@ -69,7 +69,13 @@ public class MenuXestionFicherosYDirectorios {
 
                     System.out.println("Introduce el nombre del directorio: ");
                     String nombreDirectorio = sc.nextLine();
-                    new File(nombreDirectorio).mkdir();
+                    File nuevoDirectorio = new File(d, nombreDirectorio);
+
+                    if (nuevoDirectorio.mkdir()) {
+                        System.out.println("¡Directorio creado con éxito dentro de " + d.getName() + "!");
+                    } else {
+                        System.out.println("No se pudo crear el directorio. Revisa si ya existe.");
+                    }
 
                     break;
 
